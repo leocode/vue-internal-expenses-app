@@ -1,5 +1,27 @@
-# Created by https://www.toptal.com/developers/gitignore/api/vuejs,vue
-# Edit at https://www.toptal.com/developers/gitignore?templates=vuejs,vue
+# Created by https://www.toptal.com/developers/gitignore/api/vue,vuejs,visualstudiocode,dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=vue,vuejs,visualstudiocode,dotenv
+
+### dotenv ###
+.env
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
 ### Vue ###
 # gitignore template for Vue.js projects
@@ -14,4 +36,11 @@ dist/
 npm-debug.log
 yarn-error.log
 
-# End of https://www.toptal.com/developers/gitignore/api/vuejs,vue
+# End of https://www.toptal.com/developers/gitignore/api/vue,vuejs,visualstudiocode,dotenv
+
+**/*.log
+tmp
+lib
+.DS_Store
+.idea
+db.json
