@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ ! -f "db.json" ]; then
   echo '{
-    "expenses": []
+    "expenses": [], 
+    "categories": []
   }' > db.json
 fi

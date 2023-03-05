@@ -40,9 +40,6 @@ export default {
   components: {
     Input,
   },
-  props: {
-    expenses: Array,
-  },
   data() {
     return {
       expense: { ...defaultExpense },
