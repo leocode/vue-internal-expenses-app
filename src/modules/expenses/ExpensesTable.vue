@@ -32,6 +32,7 @@ export default {
           label: "Amount",
         },
         { property: "who", label: "Spender" },
+        { property: "category", label: "Category" },
         { property: "actions", label: "" },
       ],
     };

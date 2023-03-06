@@ -8,10 +8,9 @@
 <script>
 import NewCategory from "../components/NewCategory.vue";
 import Table from "../components/Table.vue";
-import {
-  getCategories,
-  addCategory,
-} from "@/modules/categories/categories.api.js";
+import { addCategory } from "@/modules/categories/categories.api.js";
+import { mapWritableState } from "pinia";
+import { useExpensesStore } from "../stores/useExpensesStore";
 
 export default {
   components: {
@@ -25,11 +24,10 @@ export default {
         { property: "max", label: "Max" },
         { property: "thisMonth", label: "This month" },
       ],
-      categories: [],
     };
   },
-  async created() {
-    this.categories = await this.fetchCategories();
+  computed: {
+    ...mapWritableState(useExpensesStore, ["categories"]),
   },
   methods: {
     async handleNewCategory(category) {
@@ -44,16 +42,6 @@ export default {
       }
 
       this.categories = [...this.categories, newCategory];
-    },
-    async fetchCategories() {
-      const [error, expenses] = await getCategories();
-
-      if (error) {
-        console.error(error);
-        return;
-      }
-
-      return expenses;
     },
   },
 };

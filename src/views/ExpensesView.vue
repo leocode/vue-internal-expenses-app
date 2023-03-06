@@ -8,24 +8,17 @@
 <script>
 import NewExpense from "../components/NewExpense.vue";
 import ExpensesTable from "@/modules/expenses/ExpensesTable.vue";
-import {
-  getExpenses,
-  addExpense,
-  deleteExpense,
-} from "@/modules/expenses/expenses.api";
+import { addExpense, deleteExpense } from "@/modules/expenses/expenses.api";
+import { useExpensesStore } from "../stores/useExpensesStore";
+import { mapWritableState } from "pinia";
 
 export default {
   components: {
     NewExpense,
     ExpensesTable,
   },
-  data() {
-    return {
-      expenses: [],
-    };
-  },
-  async created() {
-    this.expenses = await this.fetchExpenses();
+  computed: {
+    ...mapWritableState(useExpensesStore, ["expenses"]),
   },
   methods: {
     async deleteExpense(id) {
@@ -47,16 +40,6 @@ export default {
       }
 
       this.expenses = [...this.expenses, newExpense];
-    },
-    async fetchExpenses() {
-      const [error, expenses] = await getExpenses();
-
-      if (error) {
-        console.error(error);
-        return;
-      }
-
-      return expenses;
     },
   },
 };

@@ -13,6 +13,16 @@
       </option>
     </select>
     <Input v-model="expense.amount" type="number" name="amount" />
+    <select
+      v-model="expense.category"
+      name="category"
+      id="category"
+      class="rounded-none border border-black p-2 text-slate-700"
+    >
+      <option v-for="category in categories" :value="category.name">
+        {{ category.name }}
+      </option>
+    </select>
     <p>
       You want to add {{ expense.what }} with value of {{ expense.amount }}. It
       was spend by
@@ -28,12 +38,15 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
 import Input from "../components/Input.vue";
+import { useExpensesStore } from "../stores/useExpensesStore";
 
 const defaultExpense = {
   what: "test",
   who: "Mateusz",
   amount: "1",
+  category: "Jedzenie",
 };
 
 export default {
@@ -45,6 +58,9 @@ export default {
       expense: { ...defaultExpense },
       spenders: ["Mateusz", "Hania"],
     };
+  },
+  computed: {
+    ...mapState(useExpensesStore, ["categories"]),
   },
   methods: {
     addNewExpense() {
