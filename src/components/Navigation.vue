@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto mb-8">
     <nav class="flex gap-8 py-4">
-      <router-link v-for="link in menuItems" :to="link.url">{{
+      <router-link v-for="link in menuItems" :to="link.url" :key="link.url">{{
         link.label
       }}</router-link>
     </nav>

@@ -31,3 +31,12 @@ export const deleteExpense = async (id) => {
     return [error];
   }
 };
+
+export const patchExpense = async (expense) => {
+  try {
+    const { data } = await axiosClient.patch(`/${expense.id}`, expense);
+    return [null, data];
+  } catch (error) {
+    return [error];
+  }
+};
