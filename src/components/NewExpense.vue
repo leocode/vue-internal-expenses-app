@@ -23,17 +23,8 @@
         {{ category.name }}
       </option>
     </select>
-    <p>
-      You want to add {{ expense.what }} with value of {{ expense.amount }}. It
-      was spend by
-      {{ expense.who }}
-    </p>
-    <button
-      @click="addNewExpense()"
-      class="btn rounded-md bg-slate-500 px-4 text-white"
-    >
-      Add
-    </button>
+
+    <Button @click="addNewExpense()"> Add </Button>
   </div>
 </template>
 
@@ -41,6 +32,7 @@
 import { mapState } from "pinia";
 import Input from "../components/Input.vue";
 import { useExpensesStore } from "../stores/useExpensesStore";
+import Button from "@/components/shared/Button/Button.vue";
 
 const defaultExpense = {
   what: "test",
@@ -52,6 +44,7 @@ const defaultExpense = {
 export default {
   components: {
     Input,
+    Button,
   },
   data() {
     return {

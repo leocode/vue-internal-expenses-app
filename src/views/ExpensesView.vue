@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto">
+  <main>
     <NewExpense @newExpense="handleNewExpense" />
     <ExpensesTable
       :expenses="expenses"

@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th
-          class="border-b p-4 px-4 pb-3 text-left font-medium text-slate-800 dark:text-slate-200"
+          class="text-slate-80 border-b p-4 px-4 pb-3 text-left font-medium"
           v-for="column in columns"
         >
           {{ column.label }}
@@ -13,7 +13,7 @@
     <tbody class="bg-white dark:bg-slate-900">
       <tr v-for="item in data">
         <td
-          class="w-20 border-b border-slate-100 py-8 px-4 text-left font-medium text-slate-800 dark:text-slate-300"
+          class="w-20 border-b border-slate-100 py-8 px-4 text-left font-medium text-slate-300"
           v-for="column in columns"
         >
           <slot :name="`col.${column.property}`" :item="item">
