@@ -1,31 +1,12 @@
 <template>
-  <div class="flex flex-col items-start gap-1">
-    <h2>Add new expense</h2>
-    <Input v-model="expense.what" name="what" id="what" />
-    <select
-      v-model="expense.who"
-      name="who"
-      id="who"
-      class="rounded-none border border-black p-2 text-slate-700"
-    >
-      <option v-for="spender in spenders" :value="spender">
-        {{ spender }}
-      </option>
-    </select>
-    <Input v-model="expense.amount" type="number" name="amount" />
-    <select
-      v-model="expense.category"
-      name="category"
-      id="category"
-      class="rounded-none border border-black p-2 text-slate-700"
-    >
-      <option v-for="category in categories" :value="category.name">
-        {{ category.name }}
-      </option>
-    </select>
-
-    <Button @click="addNewExpense()"> Add </Button>
-  </div>
+  <ExpenseForm @updatedExpense="addNewExpense">
+    <template #title><h2 class="basis-full">Add new expense</h2></template>
+    <template #button>
+      <div class="basis-full">
+        <Button @click="addNewExpense()" type="submit">Add</Button>
+      </div>
+    </template>
+  </ExpenseForm>
 </template>
 
 <script>
@@ -33,6 +14,9 @@ import { mapState } from "pinia";
 import Input from "../components/Input.vue";
 import { useExpensesStore } from "../stores/useExpensesStore";
 import Button from "@/components/shared/Button/Button.vue";
+import Label from "./shared/Label.vue";
+import Select from "./shared/Select.vue";
+import ExpenseForm from "./expenses/ExpenseForm/ExpenseForm.vue";
 
 const defaultExpense = {
   what: "test",
@@ -45,6 +29,9 @@ export default {
   components: {
     Input,
     Button,
+    Label,
+    Select,
+    ExpenseForm,
   },
   data() {
     return {

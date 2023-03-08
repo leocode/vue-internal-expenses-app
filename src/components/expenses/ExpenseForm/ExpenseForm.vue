@@ -1,27 +1,42 @@
 <template>
-  <div class="flex flex-col items-start gap-1">
-    <Input v-model="expense.what" name="what" id="what" />
-    <select
-      v-model="expense.who"
-      name="who"
-      id="who"
-      class="rounded-none border border-black p-2 text-slate-700"
-    >
-      <option v-for="spender in spenders" :value="spender">
-        {{ spender }}
-      </option>
-    </select>
-    <Input v-model="expense.amount" type="number" name="amount" />
-    <select
-      v-model="expense.category"
-      name="category"
-      id="category"
-      class="rounded-none border border-black p-2 text-slate-700"
-    >
-      <option v-for="category in categories" :value="category.name">
-        {{ category.name }}
-      </option>
-    </select>
+  <div class="flex flex-wrap gap-4" v-bind="$attrs">
+    <slot name="title" />
+    <div>
+      <Label id="name">What</Label>
+      <Input v-model="expense.what" name="what" id="what" />
+    </div>
+
+    <div>
+      <Label id="amount">Amount</Label>
+      <Input v-model="expense.amount" type="number" name="amount" />
+    </div>
+
+    <div>
+      <Label id="who">Spender</Label>
+      <Select
+        v-model="expense.who"
+        name="who"
+        :options="
+          spenders.map((spender) => ({ label: spender, value: spender }))
+        "
+      />
+    </div>
+
+    <div>
+      <Label id="category">Category</Label>
+      <Select
+        v-model="expense.category"
+        name="category"
+        :options="
+          categories.map((category) => ({
+            label: category.name,
+            value: category.name,
+          }))
+        "
+      />
+    </div>
+
+    <slot name="button" />
   </div>
 </template>
 
@@ -29,6 +44,8 @@
 import { mapState } from "pinia";
 import { useExpensesStore } from "@/stores/useExpensesStore";
 import Input from "@/components/Input.vue";
+import Select from "@/components/shared/Select.vue";
+import Label from "@/components/shared/Label.vue";
 
 const defaultExpense = {
   what: "test",
@@ -40,6 +57,8 @@ const defaultExpense = {
 export default {
   components: {
     Input,
+    Select,
+    Label,
   },
   props: {
     defaultExpense: Object,

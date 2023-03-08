@@ -1,5 +1,6 @@
 <template>
   <Table :data="expenses" :columns="columns">
+    <template #col.amount="props">{{ props.item.amount }} zł</template>
     <template #col.actions="props">
       <span
         class="mr-4 cursor-pointer transition-all hover:text-slate-500"
