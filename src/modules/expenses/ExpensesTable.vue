@@ -15,6 +15,8 @@
         <font-awesome-icon icon="fa-solid fa-trash" />
       </span>
     </template>
+    <template #col.category="props">{{ props.item.category.name }}</template>
+    <template #col.spender="props">{{ props.item.spender.name }}</template>
   </Table>
 </template>
 
@@ -33,12 +35,12 @@ export default {
   data() {
     return {
       columns: [
-        { property: "what", label: "What" },
+        { property: "name", label: "Name" },
         {
           property: "amount",
           label: "Amount",
         },
-        { property: "who", label: "Spender" },
+        { property: "spender", label: "Spender" },
         { property: "category", label: "Category" },
         { property: "actions", label: "" },
       ],

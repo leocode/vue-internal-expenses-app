@@ -15,7 +15,7 @@
 export default {
   props: {
     name: String,
-    value: String,
+    value: String | Number,
     options: Array,
   },
   methods: {

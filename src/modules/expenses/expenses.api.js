@@ -14,8 +14,14 @@ export const getExpenses = async () => {
 };
 
 export const addExpense = async (expense) => {
+  const { name, amount, spenderId, categoryId } = expense;
   try {
-    const { data } = await axiosClient.post("/", expense);
+    const { data } = await axiosClient.post("", {
+      name,
+      amount: Number(amount),
+      spenderId,
+      categoryId,
+    });
 
     return [null, data];
   } catch (error) {

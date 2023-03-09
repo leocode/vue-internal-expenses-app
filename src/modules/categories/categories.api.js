@@ -15,8 +15,9 @@ export const getCategories = async () => {
 };
 
 export const addCategory = async (category) => {
+  const { name } = category;
   try {
-    const { data } = await axiosClient.post("/", category);
+    const { data } = await axiosClient.post("", { name });
 
     return [null, data];
   } catch (error) {

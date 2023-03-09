@@ -2,8 +2,8 @@
   <div class="flex flex-wrap gap-4" v-bind="$attrs">
     <slot name="title" />
     <div>
-      <Label id="name">What</Label>
-      <Input v-model="expense.what" name="what" id="what" />
+      <Label id="name">Name</Label>
+      <Input v-model="expense.name" name="name" id="name" />
     </div>
 
     <div>
@@ -12,12 +12,15 @@
     </div>
 
     <div>
-      <Label id="who">Spender</Label>
+      <Label id="spender">Spender</Label>
       <Select
-        v-model="expense.who"
-        name="who"
+        v-model="expense.spenderId"
+        name="spender"
         :options="
-          spenders.map((spender) => ({ label: spender, value: spender }))
+          spenders.map((spender) => ({
+            label: spender.name,
+            value: spender.id,
+          }))
         "
       />
     </div>
@@ -25,12 +28,12 @@
     <div>
       <Label id="category">Category</Label>
       <Select
-        v-model="expense.category"
+        v-model="expense.categoryId"
         name="category"
         :options="
           categories.map((category) => ({
             label: category.name,
-            value: category.name,
+            value: category.id,
           }))
         "
       />
@@ -47,13 +50,6 @@ import Input from "@/components/Input.vue";
 import Select from "@/components/shared/Select.vue";
 import Label from "@/components/shared/Label.vue";
 
-const defaultExpense = {
-  what: "test",
-  who: "Mateusz",
-  amount: "1",
-  category: "Jedzenie",
-};
-
 export default {
   components: {
     Input,
@@ -65,8 +61,8 @@ export default {
   },
   data() {
     return {
-      expense: { ...defaultExpense },
-      spenders: ["Mateusz", "Hania"],
+      expense: { ...this.defaultExpense },
+      spenders: [{ name: "Mateusz", id: 1 }], // todo: fetch from backend
     };
   },
   computed: {

@@ -1,28 +1,26 @@
 <template>
-  <ExpenseForm @updatedExpense="addNewExpense">
+  <ExpenseForm @updateExpense="updateExpense" :defaultExpense="defaultExpense">
     <template #title><h2 class="basis-full">Add new expense</h2></template>
     <template #button>
       <div class="basis-full">
-        <Button @click="addNewExpense()" type="submit">Add</Button>
+        <Button @click="addNewExpense" type="submit">Add</Button>
       </div>
     </template>
   </ExpenseForm>
 </template>
 
 <script>
-import { mapState } from "pinia";
 import Input from "../components/Input.vue";
-import { useExpensesStore } from "../stores/useExpensesStore";
 import Button from "@/components/shared/Button/Button.vue";
 import Label from "./shared/Label.vue";
 import Select from "./shared/Select.vue";
 import ExpenseForm from "./expenses/ExpenseForm/ExpenseForm.vue";
 
 const defaultExpense = {
-  what: "test",
-  who: "Mateusz",
+  name: "test",
+  spenderId: 1,
   amount: "1",
-  category: "Jedzenie",
+  categoryId: 1,
 };
 
 export default {
@@ -35,12 +33,9 @@ export default {
   },
   data() {
     return {
+      defaultExpense,
       expense: { ...defaultExpense },
-      spenders: ["Mateusz", "Hania"],
     };
-  },
-  computed: {
-    ...mapState(useExpensesStore, ["categories"]),
   },
   methods: {
     addNewExpense() {
@@ -52,8 +47,11 @@ export default {
       this.$emit("newExpense", this.expense);
       this.resetExpense();
     },
+    updateExpense(expense) {
+      this.expense = expense;
+    },
     resetExpense() {
-      this.expense = { ...defaultExpense };
+      this.defaultExpense = { ...defaultExpense };
     },
   },
 };

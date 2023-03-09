@@ -16,7 +16,7 @@ export default {
       type: String,
       default: "text",
     },
-    value: String,
+    value: String | Number,
   },
   methods: {
     updateValue(event) {
