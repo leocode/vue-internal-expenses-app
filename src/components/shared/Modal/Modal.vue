@@ -12,7 +12,6 @@
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
-      @click="handleClick"
       v-show="open"
     >
       <div
@@ -26,6 +25,7 @@
           <div
             class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
             ref="body"
+            v-click-outside="close"
           >
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:flex sm:items-start">
@@ -80,14 +80,6 @@ export default {
   methods: {
     close() {
       this.$emit("close");
-    },
-    handleClick(e) {
-      if (
-        e.target instanceof HTMLElement &&
-        !this.$refs.body.contains(e.target)
-      ) {
-        this.close();
-      }
     },
     confirm() {
       this.$emit("confirm");

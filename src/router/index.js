@@ -22,7 +22,17 @@ const router = new VueRouter({
     {
       path: "/settings",
       name: "settings",
-      component: () => import("../views/SettingsView.vue"),
+      component: () => import("../views/settings/SettingsView.vue"),
+    },
+    {
+      path: "/settings/funds",
+      name: "funds",
+      component: () => import("../views/settings/FundsView.vue"),
+    },
+    {
+      path: "/settings/funds/:id",
+      name: "fund",
+      component: () => import("../views/settings/SingleFundView.vue"),
     },
 
     { path: "*", redirect: "/" },

@@ -39,14 +39,15 @@ export const deleteExpense = async (id) => {
 };
 
 export const patchExpense = async (expense) => {
-  const { name, amount, spenderId, categoryId } = expense;
+  const { name, amount, spenderId, categoryId, fundId } = expense;
 
   try {
     const { data } = await axiosClient.patch(`/${expense.id}`, {
       name,
-      amount: Number(amount),
+      amount: amount != undefined ? Number(amount) : undefined,
       spenderId,
       categoryId,
+      fundId,
     });
     return [null, data];
   } catch (error) {

@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import NewCategory from "../components/NewCategory.vue";
-import Table from "../components/Table.vue";
+import NewCategory from "../../components/NewCategory.vue";
+import Table from "../../components/Table.vue";
 import { addCategory } from "@/modules/categories/categories.api.js";
 import { mapWritableState } from "pinia";
-import { useExpensesStore } from "../stores/useExpensesStore";
+import { useExpensesStore } from "../../stores/useExpensesStore";
 
 export default {
   components: {

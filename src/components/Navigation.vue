@@ -12,6 +12,7 @@
 const loggedInMenu = [
   { url: "/", label: "Home" },
   { url: "/settings", label: "Settings" },
+  { url: "/settings/funds", label: "Funds" },
 ];
 
 const loggedOutMenu = [{ url: "/login", label: "Login" }];

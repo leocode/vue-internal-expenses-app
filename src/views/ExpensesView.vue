@@ -5,6 +5,7 @@
       :expenses="expenses"
       @deleteExpense="deleteExpense"
       @editExpense="editExpense"
+      @updateExpense="updateExpense"
     />
     <EditExpenseModal
       :expense="editableExpense"
@@ -68,6 +69,7 @@ export default {
       this.editableExpense = expense;
     },
     async updateExpense(newExpense) {
+      console.log("newExpense", newExpense);
       const [error, updatedExpense] = await patchExpense(newExpense);
 
       if (error) {
