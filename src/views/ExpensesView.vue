@@ -61,7 +61,7 @@ export default {
         return;
       }
 
-      this.expenses = [...this.expenses, newExpense];
+      this.expenses = [newExpense, ...this.expenses];
     },
     editExpense(expense) {
       this.open = true;
