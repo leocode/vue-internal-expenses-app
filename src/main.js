@@ -6,6 +6,10 @@ import {
   faPen,
   faTrash,
   faEllipsisVertical,
+  faGear,
+  faSackDollar,
+  faTag,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import App from "./App.vue";
 import router from "./router";
@@ -17,7 +21,15 @@ Vue.use(PiniaVuePlugin);
 const pinia = createPinia();
 
 // Add font awesome icons
-library.add(faPen, faTrash, faEllipsisVertical);
+library.add(
+  faPen,
+  faTrash,
+  faEllipsisVertical,
+  faGear,
+  faSackDollar,
+  faTag,
+  faHome
+);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.directive("click-outside", {
