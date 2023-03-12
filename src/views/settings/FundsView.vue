@@ -3,11 +3,9 @@
     <NewFund @newFund="handleNewFund" />
     <Table :columns="columns" :data="funds">
       <template #col.name="props">
-        <router-link
-          :to="`/settings/funds/${props.item.id}`"
-          :key="props.item.id"
-          >{{ props.item.name }}</router-link
-        >
+        <router-link :to="fundUrl(props.item.id)" :key="props.item.id">{{
+          props.item.name
+        }}</router-link>
       </template>
       <template #col.summary="props">
         {{ props.item.summary }} zł
@@ -22,6 +20,7 @@ import Table from "../../components/Table.vue";
 import { useExpensesStore } from "../../stores/useExpensesStore";
 import NewFund from "@/components/settings/funds/NewFund.vue";
 import { addFund } from "../../modules/funds/funds.api";
+import { ROUTER, getUrl } from "../../router/links";
 
 export default {
   components: {
@@ -49,6 +48,9 @@ export default {
       }
 
       this.funds = [...this.funds, { ...newFund, summary: 0 }];
+    },
+    fundUrl(id) {
+      return getUrl(ROUTER.singleFund, { id });
     },
   },
 };

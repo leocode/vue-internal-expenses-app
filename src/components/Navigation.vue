@@ -9,13 +9,15 @@
 </template>
 
 <script>
+import { ROUTER } from "../router/links";
+
 const loggedInMenu = [
-  { url: "/", label: "Home" },
-  { url: "/settings", label: "Settings" },
-  { url: "/settings/funds", label: "Funds" },
+  { url: ROUTER.home, label: "Home" },
+  { url: ROUTER.settings, label: "Settings" },
+  { url: ROUTER.funds, label: "Funds" },
 ];
 
-const loggedOutMenu = [{ url: "/login", label: "Login" }];
+const loggedOutMenu = [{ url: ROUTER.login, label: "Login" }];
 
 export default {
   data() {

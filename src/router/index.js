@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ExpensesView from "../views/ExpensesView.vue";
+import { ROUTER } from "./links";
 
 Vue.use(VueRouter);
 
@@ -15,22 +16,22 @@ const router = new VueRouter({
       // meta: { authorize: [] }, // @TODO: implement later
     },
     {
-      path: "/login",
+      path: ROUTER.login,
       name: "login",
       component: () => import("../views/LoginView.vue"),
     },
     {
-      path: "/settings",
+      path: ROUTER.settings,
       name: "settings",
       component: () => import("../views/settings/SettingsView.vue"),
     },
     {
-      path: "/settings/funds",
+      path: ROUTER.funds,
       name: "funds",
       component: () => import("../views/settings/FundsView.vue"),
     },
     {
-      path: "/settings/funds/:id",
+      path: ROUTER.singleFund,
       name: "fund",
       component: () => import("../views/settings/SingleFundView.vue"),
     },
