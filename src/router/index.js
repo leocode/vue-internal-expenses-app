@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ExpensesView from "../views/ExpensesView.vue";
 import { ROUTER } from "./links";
 
 Vue.use(VueRouter);
@@ -12,7 +11,7 @@ const router = new VueRouter({
     {
       path: "/",
       name: "expenses",
-      component: ExpensesView,
+      component: () => import("../views/expenses/ExpensesView.vue"),
       // meta: { authorize: [] }, // @TODO: implement later
     },
     {

@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { ROUTER } from "../router/links";
+import { ROUTER } from "../../router/links";
 import Icon from "@/components/shared/Icon.vue";
 
 const loggedInMenu = [

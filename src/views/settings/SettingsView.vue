@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import NewCategory from "../../components/NewCategory.vue";
-import Table from "../../components/Table.vue";
+import NewCategory from "@/components/settings/categories/NewCategory.vue";
+import Table from "@/components/shared/Table.vue";
 import { addCategory } from "@/modules/categories/categories.api.js";
 import { mapWritableState } from "pinia";
 import { useExpensesStore } from "../../stores/useExpensesStore";

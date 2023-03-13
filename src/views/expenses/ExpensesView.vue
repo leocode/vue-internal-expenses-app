@@ -18,14 +18,14 @@
 
 <script>
 import { mapWritableState } from "pinia";
-import NewExpense from "@/components/NewExpense.vue";
-import ExpensesTable from "@/modules/expenses/ExpensesTable.vue";
+import NewExpense from "@/components/expenses/NewExpense.vue";
+import ExpensesTable from "@/components/expenses/ExpensesTable.vue";
 import {
   addExpense,
   deleteExpense,
   patchExpense,
 } from "@/modules/expenses/expenses.api";
-import { useExpensesStore } from "../stores/useExpensesStore";
+import { useExpensesStore } from "@/stores/useExpensesStore";
 import EditExpenseModal from "@/components/expenses/EditExpenseModal.vue";
 
 export default {

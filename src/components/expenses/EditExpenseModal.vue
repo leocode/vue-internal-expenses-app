@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ExpenseForm from "./ExpenseForm/ExpenseForm.vue";
+import ExpenseForm from "./ExpenseForm.vue";
 import Modal from "../shared/Modal/Modal.vue";
 import Button from "../shared/Button/Button.vue";
 

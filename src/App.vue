@@ -14,7 +14,7 @@ import Navigation from './components/Navigation.vue';
 <script>
 import { mapStores } from "pinia";
 import Header from "./components/layout/Header.vue";
-import Navigation from "./components/Navigation.vue";
+import Navigation from "./components/layout/Navigation.vue";
 import { useExpensesStore } from "./stores/useExpensesStore";
 
 export default {

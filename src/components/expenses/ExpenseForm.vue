@@ -46,7 +46,7 @@
 <script>
 import { mapState } from "pinia";
 import { useExpensesStore } from "@/stores/useExpensesStore";
-import Input from "@/components/Input.vue";
+import Input from "@/components/shared/Input.vue";
 import Select from "@/components/shared/Select.vue";
 import Label from "@/components/shared/Label.vue";
 

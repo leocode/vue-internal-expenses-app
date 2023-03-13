@@ -16,7 +16,7 @@
 
 <script>
 import { mapWritableState } from "pinia";
-import Table from "../../components/Table.vue";
+import Table from "@/components/shared/Table.vue";
 import { useExpensesStore } from "../../stores/useExpensesStore";
 import NewFund from "@/components/settings/funds/NewFund.vue";
 import { addFund } from "../../modules/funds/funds.api";

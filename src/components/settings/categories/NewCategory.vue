@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Input from "./Input.vue";
+import Input from "../../shared/Input.vue";
 
 const defaultCategory = {
   name: "",

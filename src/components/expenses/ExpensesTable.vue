@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import Table from "@/components/Table.vue";
+import Table from "@/components/shared/Table.vue";
 import { mapState } from "pinia";
-import Button from "../../components/shared/Button/Button.vue";
-import Dropdown from "../../components/shared/Dropdown.vue";
+import Button from "../shared/Button/Button.vue";
+import Dropdown from "../shared/Dropdown.vue";
 import { useExpensesStore } from "../../stores/useExpensesStore";
 
 export default {

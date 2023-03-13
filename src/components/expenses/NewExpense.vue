@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import Input from "../components/Input.vue";
+import Input from "@/components/shared/Input.vue";
 import Button from "@/components/shared/Button/Button.vue";
-import Label from "./shared/Label.vue";
-import Select from "./shared/Select.vue";
-import ExpenseForm from "./expenses/ExpenseForm/ExpenseForm.vue";
+import Label from "@/components/shared/Label.vue";
+import Select from "@/components/shared/Select.vue";
+import ExpenseForm from "./ExpenseForm.vue";
 
 const defaultExpense = {
   name: "test",

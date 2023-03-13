@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Input from "@/components/Input.vue";
+import Input from "@/components/shared/Input.vue";
 
 export default {
   components: {
