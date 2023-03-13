@@ -24,3 +24,13 @@ export const addFund = async (fund) => {
     return [error];
   }
 };
+
+export const deleteFund = async (fundId) => {
+  try {
+    const { data } = await axiosClient.delete(`/${fundId}`);
+
+    return [null, data];
+  } catch (error) {
+    return [error];
+  }
+};

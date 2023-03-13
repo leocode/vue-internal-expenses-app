@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap gap-4" v-bind="$attrs">
+  <form class="flex flex-wrap gap-2" v-bind="$attrs" @submit.prevent>
     <slot name="title" />
     <div>
       <Label id="name">Name</Label>
@@ -40,7 +40,7 @@
     </div>
 
     <slot name="button" />
-  </div>
+  </form>
 </template>
 
 <script>

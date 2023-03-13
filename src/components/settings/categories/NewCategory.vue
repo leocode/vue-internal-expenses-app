@@ -1,33 +1,36 @@
 <template>
-  <div class="flex flex-col items-start gap-1">
+  <form class="flex flex-col items-start gap-2" @submit.prevent>
     <h2>Add new category</h2>
-    <Input v-model="category.name" name="name" id="name" />
-    <Input v-model="category.max" type="number" name="max" />
+    <Input
+      v-model="category.name"
+      name="name"
+      id="name"
+      placeholder="eg. Car"
+    />
+    <Input v-model="category.max" type="number" name="max" placeholder="800" />
 
-    <button
-      @click="addNewCategory()"
-      class="btn rounded-md bg-slate-500 px-4 text-white"
+    <Button
+      type="submit"
+      @click="addNewCategory"
+      class="btn rounded-md bg-slate-500 px-4"
     >
       Add
-    </button>
-  </div>
+    </Button>
+  </form>
 </template>
 
 <script>
-import Input from "../../shared/Input.vue";
-
-const defaultCategory = {
-  name: "",
-  max: "1000",
-};
+import Input from "@/components/shared/Input.vue";
+import Button from "@/components/shared/Button/Button.vue";
 
 export default {
   components: {
     Input,
+    Button,
   },
   data() {
     return {
-      category: { ...defaultCategory },
+      category: {},
     };
   },
   methods: {
@@ -40,7 +43,7 @@ export default {
       this.resetForm();
     },
     resetForm() {
-      this.category = { ...defaultCategory };
+      this.category = {};
     },
   },
 };

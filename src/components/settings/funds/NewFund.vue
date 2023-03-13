@@ -1,23 +1,31 @@
 <template>
-  <div class="flex flex-col items-start gap-1">
+  <form class="flex flex-col items-start gap-2" @submit.prevent>
     <h2>Add new fund</h2>
-    <Input v-model="fund.name" name="name" id="name" />
+    <Input
+      v-model="fund.name"
+      name="name"
+      id="name"
+      placeholder="eg. Irregular expenses"
+    />
 
-    <button
+    <Button
       @click="addNewFund"
-      class="btn rounded-md bg-slate-500 px-4 text-white"
+      class="btn rounded-md bg-slate-500 px-4"
+      type="submit"
     >
       Add
-    </button>
-  </div>
+    </Button>
+  </form>
 </template>
 
 <script>
 import Input from "@/components/shared/Input.vue";
+import Button from "@/components/shared/Button/Button.vue";
 
 export default {
   components: {
     Input,
+    Button,
   },
   data() {
     return {

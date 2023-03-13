@@ -7,10 +7,16 @@
           props.item.name
         }}</router-link>
       </template>
-      <template #col.summary="props">
-        {{ props.item.summary }} zł
-      </template></Table
-    >
+      <template #col.summary="props"> {{ props.item.summary }} zł </template>
+      <template #col.actions="props">
+        <span
+          class="cursor-pointer transition-all hover:text-slate-500"
+          @click="handleDeleteFund(props.item.id)"
+        >
+          <font-awesome-icon icon="fa-solid fa-trash" />
+        </span>
+      </template>
+    </Table>
   </main>
 </template>
 
@@ -19,7 +25,7 @@ import { mapWritableState } from "pinia";
 import Table from "@/components/shared/Table.vue";
 import { useExpensesStore } from "../../stores/useExpensesStore";
 import NewFund from "@/components/settings/funds/NewFund.vue";
-import { addFund } from "../../modules/funds/funds.api";
+import { addFund, deleteFund } from "../../modules/funds/funds.api";
 import { ROUTER, getUrl } from "../../router/links";
 
 export default {
@@ -32,6 +38,7 @@ export default {
       columns: [
         { property: "name", label: "Fund" },
         { property: "summary", label: "Summary (this month)" },
+        { property: "actions", label: "" },
       ],
     };
   },
@@ -51,6 +58,16 @@ export default {
     },
     fundUrl(id) {
       return getUrl(ROUTER.singleFund, { id });
+    },
+    async handleDeleteFund(id) {
+      const [error] = await deleteFund(id);
+
+      if (error) {
+        console.error("Error deleting the fund");
+        return;
+      }
+
+      this.funds = this.funds.filter((fund) => fund.id !== id);
     },
   },
 };

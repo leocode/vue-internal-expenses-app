@@ -24,3 +24,13 @@ export const addCategory = async (category) => {
     return [error];
   }
 };
+
+export const deleteCategory = async (categoryId) => {
+  try {
+    const { data } = await axiosClient.delete(`/${categoryId}`);
+
+    return [null, data];
+  } catch (error) {
+    return [error];
+  }
+};

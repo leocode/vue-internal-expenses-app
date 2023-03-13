@@ -2,7 +2,7 @@
   <input
     :type="type"
     :name="name"
-    class="placeholder-blueGray-300 text-blueGray-600 w-full rounded border-0 bg-white px-3 py-3 text-sm shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+    class="placeholder-blueGray-300 text-blueGray-600 rounded border-0 bg-white px-3 py-3 text-sm shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
     @input="updateValue"
     :value="value"
   />
