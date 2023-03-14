@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="flex flex-col gap-4">
     <NewExpense @newExpense="handleNewExpense" />
     <ExpensesTable
       :expenses="expenses"

@@ -1,6 +1,6 @@
 <template>
   <form class="flex flex-col items-start gap-2" @submit.prevent>
-    <h2>Add new fund</h2>
+    <Typography as="h2">Add new fund</Typography>
     <Input
       v-model="fund.name"
       name="name"
@@ -21,11 +21,13 @@
 <script>
 import Input from "@/components/shared/Input.vue";
 import Button from "@/components/shared/Button/Button.vue";
+import Typography from "../../shared/Typography.vue";
 
 export default {
   components: {
     Input,
     Button,
+    Typography,
   },
   data() {
     return {

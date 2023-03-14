@@ -1,19 +1,19 @@
 <template>
-  <table class="w-full table-auto border-collapse text-sm">
+  <table class="w-full table-auto border-collapse rounded-lg bg-white text-sm">
     <thead>
       <tr>
         <th
-          class="text-slate-80 border-b p-4 px-4 pb-3 text-left font-medium"
+          class="whitespace-nowrap bg-zinc-100 px-6 py-3 text-left align-middle text-xs font-semibold uppercase first:rounded-tl-lg last:rounded-tr-lg"
           v-for="column in columns"
         >
           {{ column.label }}
         </th>
       </tr>
     </thead>
-    <tbody class="bg-white dark:bg-slate-900">
+    <tbody class="">
       <tr v-for="item in data">
         <td
-          class="w-20 border-b border-slate-100 py-8 px-4 text-left font-medium text-slate-300"
+          class="whitespace-nowrap border border-t-0 border-l-0 border-r-0 border-solid border-zinc-100 p-4 px-6 align-middle text-xs"
           v-for="column in columns"
         >
           <slot :name="`col.${column.property}`" :item="item">

@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto">
+  <main class="flex flex-col gap-4">
     <NewCategory @newCategory="handleNewCategory" />
     <Table :columns="categoriesColumns" :data="categories">
       <template #col.actions="props">

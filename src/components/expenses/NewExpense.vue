@@ -1,6 +1,8 @@
 <template>
   <ExpenseForm @updateExpense="updateExpense" :defaultExpense="defaultExpense">
-    <template #title><h2 class="basis-full">Add new expense</h2></template>
+    <template #title>
+      <Typography as="h2" class="basis-full">Add new expense</Typography>
+    </template>
     <template #button>
       <div class="basis-full">
         <Button @click="addNewExpense" type="submit">Add</Button>
@@ -15,6 +17,7 @@ import Button from "@/components/shared/Button/Button.vue";
 import Label from "@/components/shared/Label.vue";
 import Select from "@/components/shared/Select.vue";
 import ExpenseForm from "./ExpenseForm.vue";
+import Typography from "../shared/Typography.vue";
 
 const defaultExpense = {
   name: "test",
@@ -30,6 +33,7 @@ export default {
     Label,
     Select,
     ExpenseForm,
+    Typography,
   },
   data() {
     return {

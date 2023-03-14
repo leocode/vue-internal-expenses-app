@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto">
+  <main class="flex flex-col gap-4">
     <NewFund @newFund="handleNewFund" />
     <Table :columns="columns" :data="funds">
       <template #col.name="props">

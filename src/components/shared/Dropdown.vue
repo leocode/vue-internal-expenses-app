@@ -54,7 +54,7 @@
         v-show="visible"
         v-click-outside="hide"
       >
-        <div class="py-1" role="none">
+        <div class="flex flex-col py-1" role="none">
           <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
           <slot />
         </div>
