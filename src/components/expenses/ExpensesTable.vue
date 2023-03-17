@@ -1,5 +1,9 @@
 <template>
-  <Table :data="expenses" :columns="columns">
+  <Table
+    :data="expenses"
+    :columns="columns"
+    noDataInfo="There are no expenses for this month"
+  >
     <template #col.amount="props">{{ props.item.amount }} zł</template>
     <template #col.actions="props">
       <div class="flex gap-4">

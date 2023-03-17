@@ -4,9 +4,9 @@ const axiosClient = axios.create({
   baseURL: "/api/expenses",
 });
 
-export const getExpenses = async () => {
+export const getExpenses = async (params) => {
   try {
-    const { data } = await axiosClient.get();
+    const { data } = await axiosClient.get("", { params });
     return [null, data];
   } catch (error) {
     return [error];

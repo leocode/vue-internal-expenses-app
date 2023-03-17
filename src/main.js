@@ -10,6 +10,7 @@ import {
   faSackDollar,
   faTag,
   faHome,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import App from "./App.vue";
 import router from "./router";
@@ -28,7 +29,8 @@ library.add(
   faGear,
   faSackDollar,
   faTag,
-  faHome
+  faHome,
+  faArrowRight
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

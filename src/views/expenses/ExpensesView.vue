@@ -1,6 +1,17 @@
 <template>
   <main class="flex flex-col gap-4">
     <NewExpense @newExpense="handleNewExpense" />
+    <div class="flex items-center justify-center">
+      <button @click="previousMonth" class="p-2">
+        <font-awesome-icon icon="fa-solid fa-arrow-right" class="rotate-180" />
+      </button>
+      <h2 class="min-w-[8rem] text-center">
+        {{ currentMonth.format("MMMM YYYY") }}
+      </h2>
+      <button @click="nextMonth" class="p-2">
+        <font-awesome-icon icon="fa-solid fa-arrow-right" />
+      </button>
+    </div>
     <ExpensesTable
       :expenses="expenses"
       @deleteExpense="deleteExpense"
@@ -17,6 +28,7 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
 import { mapWritableState } from "pinia";
 import NewExpense from "@/components/expenses/NewExpense.vue";
 import ExpensesTable from "@/components/expenses/ExpensesTable.vue";
@@ -27,6 +39,7 @@ import {
 } from "@/modules/expenses/expenses.api";
 import { useExpensesStore } from "@/stores/useExpensesStore";
 import EditExpenseModal from "@/components/expenses/EditExpenseModal.vue";
+import { getExpenses } from "../../modules/expenses/expenses.api";
 
 export default {
   components: {
@@ -38,6 +51,7 @@ export default {
     return {
       open: false,
       editableExpense: undefined,
+      currentMonth: dayjs().startOf("month"),
     };
   },
   computed: {
@@ -86,6 +100,25 @@ export default {
         updatedExpense,
         ...this.expenses.slice(indexToUpdate + 1),
       ];
+    },
+    previousMonth() {
+      const previousMonth = this.currentMonth.subtract(1, "month");
+      this.currentMonth = previousMonth;
+    },
+    nextMonth() {
+      const nextMonth = this.currentMonth.add(1, "month");
+      this.currentMonth = nextMonth;
+    },
+  },
+  watch: {
+    async currentMonth(val) {
+      const [error, data] = await getExpenses({
+        date: this.currentMonth.format("YYYY-MM-DD"),
+      });
+
+      if (data) {
+        this.expenses = data;
+      }
     },
   },
 };
