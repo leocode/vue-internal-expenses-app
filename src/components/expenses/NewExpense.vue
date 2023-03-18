@@ -1,5 +1,9 @@
 <template>
-  <ExpenseForm @updateExpense="updateExpense" :defaultExpense="defaultExpense">
+  <ExpenseForm
+    @updateExpense="updateExpense"
+    :defaultExpense="defaultExpense"
+    ref="expenseForm"
+  >
     <template #title>
       <Typography as="h2" class="basis-full">Add new expense</Typography>
     </template>
@@ -12,6 +16,7 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
 import Input from "@/components/shared/Input.vue";
 import Button from "@/components/shared/Button/Button.vue";
 import Label from "@/components/shared/Label.vue";
@@ -20,10 +25,11 @@ import ExpenseForm from "./ExpenseForm.vue";
 import Typography from "../shared/Typography.vue";
 
 const defaultExpense = {
-  name: "test",
+  name: "",
   spenderId: 1,
   amount: "1",
   categoryId: 1,
+  spentAt: dayjs().format("YYYY-MM-DD"),
 };
 
 export default {
@@ -50,12 +56,16 @@ export default {
       }
       this.$emit("newExpense", this.expense);
       this.resetExpense();
+      this.$refs.expenseForm.$refs.expenseName.focus();
     },
     updateExpense(expense) {
       this.expense = expense;
     },
     resetExpense() {
-      this.defaultExpense = { ...defaultExpense };
+      this.defaultExpense = {
+        ...defaultExpense,
+        spentAt: this.expense.spentAt, // keep old date (useful when batch adding)
+      };
     },
   },
 };

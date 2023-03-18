@@ -3,26 +3,12 @@
     <slot name="title" />
     <div>
       <Label id="name">Name</Label>
-      <Input v-model="expense.name" name="name" id="name" />
+      <Input v-model="expense.name" name="name" id="name" ref="expenseName" />
     </div>
 
     <div>
       <Label id="amount">Amount</Label>
       <Input v-model="expense.amount" type="number" name="amount" />
-    </div>
-
-    <div>
-      <Label id="spender">Spender</Label>
-      <Select
-        v-model="expense.spenderId"
-        name="spender"
-        :options="
-          spenders.map((spender) => ({
-            label: spender.name,
-            value: spender.id,
-          }))
-        "
-      />
     </div>
 
     <div>
@@ -34,6 +20,30 @@
           categories.map((category) => ({
             label: category.name,
             value: category.id,
+          }))
+        "
+      />
+    </div>
+
+    <div>
+      <Label id="spentAt">Date</Label>
+      <Input v-model="expense.spentAt" type="date" name="spentAt" />
+    </div>
+
+    <div>
+      <Label id="note">Comment</Label>
+      <Input v-model="expense.note" name="note" />
+    </div>
+
+    <div>
+      <Label id="spender">Spender</Label>
+      <Select
+        v-model="expense.spenderId"
+        name="spender"
+        :options="
+          spenders.map((spender) => ({
+            label: spender.name,
+            value: spender.id,
           }))
         "
       />

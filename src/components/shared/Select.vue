@@ -1,26 +1,54 @@
 <template>
-  <select
-    :name="name"
-    class="placeholder-blueGray-300 text-blueGray-600 w-full rounded border-0 bg-white px-3 py-3 text-sm shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
-    @input="updateValue"
-    :value="value"
-  >
-    <option v-for="option in options" :value="option.value">
-      {{ option.label }}
-    </option>
-  </select>
+  <v-select
+    :options="options"
+    :value="selectedOption"
+    @input="updateSelectedOption"
+    label="label"
+    track-by="value"
+    :searchable="true"
+    :clearable="true"
+    class="placeholder-blueGray-300 text-blueGray-600 rounded text-sm shadow focus:outline-none focus:ring"
+  />
 </template>
 
+<style>
+@import "vue-select/dist/vue-select.css";
+.vs__dropdown-toggle {
+  @apply border-0 p-2;
+}
+
+.vs__selected {
+  @apply static m-0 !important;
+}
+
+.vs__search {
+  @apply m-0 !important;
+}
+</style>
+
 <script>
+import vSelect from "vue-select";
+
 export default {
+  components: {
+    vSelect,
+  },
   props: {
     name: String,
     value: String | Number,
     options: Array,
   },
+  data() {
+    return {
+      selectedOption: this.options.find(
+        (option) => option.value === this.value
+      ),
+    };
+  },
   methods: {
-    updateValue(event) {
-      this.$emit("input", event.target.value);
+    updateSelectedOption(selectedOption) {
+      this.selectedOption = selectedOption;
+      this.$emit("input", selectedOption.value);
     },
   },
 };

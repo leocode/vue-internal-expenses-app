@@ -10,6 +10,9 @@
           <font-awesome-icon icon="fa-solid fa-trash" />
         </span>
       </template>
+      <template #col.summary="props">
+        {{ formatAmount(props.item.summary) }}
+      </template>
     </Table>
   </main>
 </template>
@@ -23,6 +26,7 @@ import {
 } from "@/modules/categories/categories.api.js";
 import { mapWritableState } from "pinia";
 import { useExpensesStore } from "../../stores/useExpensesStore";
+import { formatAmount } from "@/utils/amount";
 
 export default {
   components: {
@@ -33,8 +37,7 @@ export default {
     return {
       categoriesColumns: [
         { property: "name", label: "Category" },
-        { property: "max", label: "Max" },
-        { property: "thisMonth", label: "This month" },
+        { property: "summary", label: "This month" },
         { property: "actions", label: "" },
       ],
     };
@@ -68,6 +71,7 @@ export default {
         (category) => category.id !== id
       );
     },
+    formatAmount,
   },
 };
 </script>

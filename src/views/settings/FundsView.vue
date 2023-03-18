@@ -7,7 +7,9 @@
           props.item.name
         }}</router-link>
       </template>
-      <template #col.summary="props"> {{ props.item.summary }} zł </template>
+      <template #col.summary="props">
+        {{ formatAmount(props.item.summary) }}
+      </template>
       <template #col.actions="props">
         <span
           class="cursor-pointer transition-all hover:text-slate-500"
@@ -27,6 +29,7 @@ import { useExpensesStore } from "../../stores/useExpensesStore";
 import NewFund from "@/components/settings/funds/NewFund.vue";
 import { addFund, deleteFund } from "../../modules/funds/funds.api";
 import { ROUTER, getUrl } from "../../router/links";
+import { formatAmount } from "@/utils/amount";
 
 export default {
   components: {
@@ -69,6 +72,7 @@ export default {
 
       this.funds = this.funds.filter((fund) => fund.id !== id);
     },
+    formatAmount,
   },
 };
 </script>

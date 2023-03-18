@@ -1,4 +1,5 @@
 import axios from "axios";
+import { parseExpenseBody } from "./helpers";
 
 const axiosClient = axios.create({
   baseURL: "/api/expenses",
@@ -14,14 +15,8 @@ export const getExpenses = async (params) => {
 };
 
 export const addExpense = async (expense) => {
-  const { name, amount, spenderId, categoryId } = expense;
   try {
-    const { data } = await axiosClient.post("", {
-      name,
-      amount: Number(amount),
-      spenderId,
-      categoryId,
-    });
+    const { data } = await axiosClient.post("", parseExpenseBody(expense));
 
     return [null, data];
   } catch (error) {
@@ -39,16 +34,11 @@ export const deleteExpense = async (id) => {
 };
 
 export const patchExpense = async (expense) => {
-  const { name, amount, spenderId, categoryId, fundId } = expense;
-
   try {
-    const { data } = await axiosClient.patch(`/${expense.id}`, {
-      name,
-      amount: amount != undefined ? Number(amount) : undefined,
-      spenderId,
-      categoryId,
-      fundId,
-    });
+    const { data } = await axiosClient.patch(
+      `/${expense.id}`,
+      parseExpenseBody(expense)
+    );
     return [null, data];
   } catch (error) {
     return [error];

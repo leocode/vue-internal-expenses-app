@@ -76,14 +76,18 @@ export default {
         return;
       }
 
-      this.expenses = [newExpense, ...this.expenses];
+      this.expenses = [newExpense, ...this.expenses].sort(
+        (a, b) => new Date(b.spentAt) - new Date(a.spentAt)
+      );
     },
     editExpense(expense) {
       this.open = true;
-      this.editableExpense = expense;
+      this.editableExpense = {
+        ...expense,
+        spentAt: dayjs(expense.spentAt).format("YYYY-MM-DD"),
+      };
     },
     async updateExpense(newExpense) {
-      console.log("newExpense", newExpense);
       const [error, updatedExpense] = await patchExpense(newExpense);
 
       if (error) {

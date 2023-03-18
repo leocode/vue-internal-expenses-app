@@ -11,8 +11,12 @@
           </th>
         </tr>
       </thead>
-      <tbody class="">
-        <tr v-for="item in data">
+      <tbody>
+        <tr
+          v-for="item in data"
+          :key="item.id"
+          class="[&:last-child_td]:border-b-0"
+        >
           <td
             class="whitespace-nowrap border border-t-0 border-l-0 border-r-0 border-solid border-zinc-100 p-4 px-6 align-middle text-xs"
             v-for="column in columns"
@@ -26,7 +30,7 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="!data.length" class="p-2 text-center">
+    <div v-if="!data.length" class="p-2 text-center text-xs">
       {{ noDataInfo || "No data for these filters" }}
     </div>
   </div>

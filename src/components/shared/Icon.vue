@@ -1,5 +1,5 @@
 <template>
-  <font-awesome-icon icon="fa-solid" :icon="icon" />
+  <font-awesome-icon icon="fa-solid" :icon="icon" v-bind="$attrs" />
 </template>
 
 <script>
