@@ -1,6 +1,7 @@
 export const ROUTER = {
   home: "/",
   login: "/login",
+  logout: "/logout",
   settings: "/settings",
   funds: "/settings/funds",
   singleFund: "/settings/funds/:id",

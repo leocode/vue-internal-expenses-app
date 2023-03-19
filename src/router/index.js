@@ -1,8 +1,6 @@
-import Vue from "vue";
 import VueRouter from "vue-router";
+import { useUserStore } from "@/stores/useUserStore";
 import { ROUTER } from "./links";
-
-Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "history",
@@ -17,7 +15,7 @@ const router = new VueRouter({
     {
       path: ROUTER.login,
       name: "login",
-      component: () => import("../views/LoginView.vue"),
+      component: () => import("../views/auth/LoginView.vue"),
     },
     {
       path: ROUTER.settings,
@@ -42,20 +40,21 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const { authorize } = to.meta;
-  // const currentUser = authenticationService.currentUserValue;
-  const currentUser = null; // @TODO: implement later
+  const userStore = useUserStore();
 
-  if (authorize) {
-    if (!currentUser) {
+  if (!userStore.user) {
+    if (to.name !== "login") {
       // not logged in so redirect to login page with the return url
-      return next({ path: "/login", query: { returnUrl: to.path } });
+      return next({ path: ROUTER.login, query: { returnUrl: to.path } });
+    } else {
+      return next();
     }
+  }
 
-    // check if route is restricted by role
-    if (authorize.length && !authorize.includes(currentUser.role)) {
-      // role not authorized so redirect to home page
-      return next({ path: "/" });
-    }
+  // check if route is restricted by role
+  if (authorize?.length && !authorize.includes(userStore.user.role)) {
+    // role not authorized so redirect to home page
+    return next({ path: "/" });
   }
 
   next();

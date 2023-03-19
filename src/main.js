@@ -1,4 +1,5 @@
 import Vue from "vue";
+import VueRouter from "vue-router";
 import { createPinia, PiniaVuePlugin } from "pinia";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -12,6 +13,7 @@ import {
   faHome,
   faArrowRight,
   faCheck,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import App from "./App.vue";
 import router from "./router";
@@ -21,6 +23,9 @@ import "./assets/main.css";
 // Add pinia support
 Vue.use(PiniaVuePlugin);
 const pinia = createPinia();
+
+// Use VueRouter after pinia initialize
+Vue.use(VueRouter);
 
 // Add font awesome icons
 library.add(
@@ -32,7 +37,8 @@ library.add(
   faTag,
   faHome,
   faArrowRight,
-  faCheck
+  faCheck,
+  faRightFromBracket
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

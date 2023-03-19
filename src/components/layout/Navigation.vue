@@ -28,14 +28,16 @@
         </router-link>
       </template>
 
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-4 last:hidden md:min-w-full" />
     </template>
   </nav>
 </template>
 
 <script>
-import { ROUTER } from "../../router/links";
+import { mapState } from "pinia";
+import { ROUTER } from "@/router/links";
 import Icon from "@/components/shared/Icon.vue";
+import { useUserStore } from "@/stores/useUserStore";
 
 const loggedInMenu = [
   { url: ROUTER.home, label: "Home", icon: "fa-home" },
@@ -46,6 +48,12 @@ const loggedInMenu = [
       { url: ROUTER.funds, label: "Funds", icon: "fa-sack-dollar" },
     ],
   },
+  {
+    label: "Account",
+    menu: [
+      { url: ROUTER.logout, label: "Logout", icon: "fa-right-from-bracket" }, // todo: logout action
+    ],
+  },
 ];
 
 const loggedOutMenu = [{ url: ROUTER.login, label: "Login" }];
@@ -54,14 +62,10 @@ export default {
   components: {
     Icon,
   },
-  data() {
-    return {
-      isAuthorized: true, // TODO: handle login state
-    };
-  },
   computed: {
+    ...mapState(useUserStore, ["isLoggedIn"]),
     menuItems: function () {
-      return this.isAuthorized ? loggedInMenu : loggedOutMenu;
+      return this.isLoggedIn ? loggedInMenu : loggedOutMenu;
     },
   },
 };
